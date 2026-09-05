@@ -10,6 +10,13 @@ export async function obtenerDatos(ruta) {
     },
   })
 
+  if (respuesta.status === 401) {
+    sessionStorage.removeItem('sesion')
+    window.location.assign('/login')
+    return
+  }
+
+
   if (!respuesta.ok) {
     throw new Error('No fue posible obtener los datos.')
   }

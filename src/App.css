@@ -88,3 +88,19 @@ main {
     grid-template-columns: 1fr;
   }
 }
+
+.menu-salir {
+  padding: 12px;
+  border: 1px solid #a9c6e6;
+  border-radius: 8px;
+  color: #1d3557;
+  background-color: #ffffff;
+  cursor: pointer;
+  font: inherit;
+}
+
+.menu-salir:hover,
+.menu-salir:focus-visible {
+  color: #ffffff;
+  background-color: #1d5d9b;
+}
