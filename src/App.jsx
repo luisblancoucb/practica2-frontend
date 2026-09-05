@@ -1,20 +1,13 @@
+import { Route, Routes } from 'react-router-dom'
+import Login from './pages/Login.jsx'
 import './App.css'
-import Header from './components/Header.jsx'
-import Navigation from './components/Navigation.jsx'
-import Footer from './components/Footer.jsx'
 
 function App() {
   return (
-    <>
-     <Header />
-
-     <Navigation />
-      <main className="contenedor">
-
-      </main>
-
-      <Footer />
-    </>
+    <Routes>
+      <Route path="/" element={<Login />} />
+      <Route path="/login" element={<Login />} />
+    </Routes>
   )
 }
 
