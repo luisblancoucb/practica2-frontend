@@ -5,6 +5,7 @@ import ProtectedRoute from './components/ProtectedRoute.jsx'
 import Header from './components/Header.jsx'
 import Navigation from './components/Navigation.jsx'
 import Footer from './components/Footer.jsx'
+import Clientes from './pages/Clientes.jsx'
 
 import './App.css'
 
@@ -26,6 +27,17 @@ function App() {
         </ProtectedRoute>
       }
       />
+      <Route
+      path="/clientes"
+      element={
+        <ProtectedRoute>
+          <Header />
+          <Navigation />
+          <Clientes />
+          <Footer />
+        </ProtectedRoute>
+      }
+     />
     </Routes>
   )
 }

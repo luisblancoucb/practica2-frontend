@@ -1,0 +1,38 @@
+.encabezado-pagina {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.encabezado-pagina h2 {
+  margin: 0;
+}
+
+.tabla-contenedor {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+caption {
+  margin-bottom: 10px;
+  text-align: left;
+  font-weight: bold;
+}
+
+th,
+td {
+  padding: 10px;
+  border: 1px solid #aaaaaa;
+  text-align: left;
+}
+
+th {
+  color: #1d3557;
+  background-color: #dbe7f5;
+}

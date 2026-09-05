@@ -1,13 +1,18 @@
+import { NavLink } from 'react-router-dom'
+
 function Navigation() {
+  function claseEnlace({ isActive }) {
+    return isActive ? 'menu-activo' : ''
+  }
+
   return (
     <nav className="menu" aria-label="Navegación principal">
-      <a className="menu-activo" href="#inicio" aria-current="page">
+      <NavLink to="/dashboard" className={claseEnlace}>
         Inicio
-      </a>
-      <a href="#clientes">Clientes</a>
-      <a href="#servicios">Servicios</a>
-      <a href="#citas">Citas</a>
-      <a href="#salir">Cerrar sesión</a>
+      </NavLink>
+      <NavLink to="/clientes" className={claseEnlace}>
+        Clientes
+      </NavLink>
     </nav>
   )
 }
