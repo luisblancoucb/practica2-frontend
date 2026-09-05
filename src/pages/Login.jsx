@@ -1,8 +1,30 @@
+import { useState } from 'react'
+import { iniciarSesion } from '../services/authService.js'
 import './Login.css'
 
 function Login() {
-  function handleSubmit(event) {
+  const [correo, setCorreo] = useState('')
+  const [contrasena, setContrasena] = useState('')
+  const [mensajeError, setMensajeError] = useState('')
+  const [mensajeExito, setMensajeExito] = useState('')
+  const [cargando, setCargando] = useState(false)
+
+  async function handleSubmit(event) {
     event.preventDefault()
+    setMensajeError('')
+    setMensajeExito('')
+    setCargando(true)
+
+    try {
+      const sesion = await iniciarSesion(correo, contrasena)
+
+      sessionStorage.setItem('sesion', JSON.stringify(sesion))
+      setMensajeExito('Sesión iniciada correctamente.')
+    } catch (error) {
+      setMensajeError(error.message)
+    } finally {
+      setCargando(false)
+    }
   }
 
   return (
@@ -26,6 +48,8 @@ function Login() {
                   name="correo"
                   placeholder="ejemplo@correo.com"
                   autoComplete="email"
+                  value={correo}
+                  onChange={(event) => setCorreo(event.target.value)}
                   required
                 />
               </div>
@@ -38,12 +62,27 @@ function Login() {
                   name="contrasena"
                   placeholder="Escribe tu contraseña"
                   autoComplete="current-password"
+                  minLength="8"
+                  value={contrasena}
+                  onChange={(event) => setContrasena(event.target.value)}
                   required
                 />
               </div>
 
-              <button className="boton" type="submit">
-                Ingresar
+              {mensajeError && (
+                <p className="mensaje-error" role="alert">
+                  {mensajeError}
+                </p>
+              )}
+
+              {mensajeExito && (
+                <p className="mensaje-exito" role="status">
+                  {mensajeExito}
+                </p>
+              )}
+
+              <button className="boton" type="submit" disabled={cargando}>
+                {cargando ? 'Ingresando...' : 'Ingresar'}
               </button>
             </fieldset>
           </form>

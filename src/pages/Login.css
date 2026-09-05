@@ -103,3 +103,25 @@ legend {
 .boton:hover {
   background-color: #164978;
 }
+
+.mensaje-error,
+.mensaje-exito {
+  margin: 0 0 18px;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.mensaje-error {
+  color: #741717;
+  background-color: #fbe3e3;
+}
+
+.mensaje-exito {
+  color: #1d5d39;
+  background-color: #e3f3e8;
+}
+
+.boton:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
