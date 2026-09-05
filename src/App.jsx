@@ -1,32 +1,19 @@
 import './App.css'
+import Header from './components/Header.jsx'
+import Navigation from './components/Navigation.jsx'
+import Footer from './components/Footer.jsx'
 
 function App() {
   return (
     <>
-      <header className="encabezado">
-        <div className="contenedor">
-          <h1>Patitas Pet Shop</h1>
-          <p>Panel administrativo</p>
-        </div>
-      </header>
+     <Header />
 
-      <nav className="menu" aria-label="Navegación principal">
-        <a className="menu-activo" href="#inicio" aria-current="page">
-          Inicio
-        </a>
-        <a href="#clientes">Clientes</a>
-        <a href="#servicios">Servicios</a>
-        <a href="#citas">Citas</a>
-        <a href="#salir">Cerrar sesión</a>
-      </nav>
-
+     <Navigation />
       <main className="contenedor">
 
       </main>
 
-      <footer className="pie-pagina">
-        <p>Maestría en Ingeniería de Software</p>
-      </footer>
+      <Footer />
     </>
   )
 }
