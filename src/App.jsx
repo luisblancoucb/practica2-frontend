@@ -6,6 +6,7 @@ import Header from './components/Header.jsx'
 import Navigation from './components/Navigation.jsx'
 import Footer from './components/Footer.jsx'
 import Clientes from './pages/Clientes.jsx'
+import FormularioCliente from './pages/FormularioCliente.jsx'
 
 import './App.css'
 
@@ -37,7 +38,18 @@ function App() {
           <Footer />
         </ProtectedRoute>
       }
-     />
+      />
+      <Route
+      path="/clientes/nuevo"
+      element={
+        <ProtectedRoute>
+          <Header />
+          <Navigation />
+          <FormularioCliente />
+          <Footer />
+        </ProtectedRoute>
+      }
+      />
     </Routes>
   )
 }

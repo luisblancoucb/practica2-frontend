@@ -75,7 +75,8 @@ legend {
   margin-bottom: 6px;
 }
 
-.campo input {
+.campo input,
+.campo select {
   width: 100%;
   padding: 10px;
   border: 1px solid #aaaaaa;
@@ -83,7 +84,8 @@ legend {
   font-size: 16px;
 }
 
-.campo input:focus {
+.campo input:focus,
+.campo select:focus {
   border-color: #1d5d9b;
   outline: 2px solid #b9d8f5;
 }

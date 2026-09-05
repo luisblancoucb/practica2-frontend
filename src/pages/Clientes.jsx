@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { obtenerDatos } from '../services/apiService.js'
+import { Link } from 'react-router-dom'
 import './Clientes.css'
 
 function Clientes() {
@@ -23,7 +24,10 @@ function Clientes() {
     <main className="dashboard-principal">
       <section className="panel listado-seccion">
         <header className="encabezado-pagina">
-          <h2>Clientes</h2>
+            <h2>Clientes</h2>
+            <Link className="boton boton-pequeno" to="/clientes/nuevo">
+            Crear cliente
+            </Link>
         </header>
 
         {mensajeError && <p role="alert">{mensajeError}</p>}
