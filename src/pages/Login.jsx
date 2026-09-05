@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { iniciarSesion } from '../services/authService.js'
+import { useNavigate } from 'react-router-dom'
 import './Login.css'
 
 function Login() {
@@ -8,6 +9,7 @@ function Login() {
   const [mensajeError, setMensajeError] = useState('')
   const [mensajeExito, setMensajeExito] = useState('')
   const [cargando, setCargando] = useState(false)
+  const navegar = useNavigate()
 
   async function handleSubmit(event) {
     event.preventDefault()
@@ -19,7 +21,7 @@ function Login() {
       const sesion = await iniciarSesion(correo, contrasena)
 
       sessionStorage.setItem('sesion', JSON.stringify(sesion))
-      setMensajeExito('Sesión iniciada correctamente.')
+      navegar('/dashboard')
     } catch (error) {
       setMensajeError(error.message)
     } finally {

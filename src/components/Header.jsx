@@ -3,7 +3,6 @@ function Header() {
     <header className="encabezado">
       <div className="contenedor">
         <h1>Patitas Pet Shop</h1>
-        <p>Panel administrativo</p>  
       </div>
     </header>
   )
