@@ -1,16 +1,63 @@
-# React + Vite
+# Patitas Pet Shop - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Frontend desarrollado con React y Vite para administrar clientes, servicios y citas.
 
-Currently, two official plugins are available:
+## Tecnologías
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React
+- Vite
+- React Router
+- CSS
+- Fetch API
+- JWT
 
-## React Compiler
+## Requisitos
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Node.js 26 o superior.
+- Backend de Patitas ejecutándose en `http://localhost:5271`.
 
-## Expanding the ESLint configuration
+## Instalación
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+En la carpeta del frontend, ejecuta:
+
+```powershell
+npm.cmd install
+```
+
+## Configuración
+
+Verifica que exista el archivo `.env` en la raíz del proyecto:
+
+```text
+VITE_API_URL=http://localhost:5271/api
+```
+
+## Ejecutar el proyecto
+
+```powershell
+npm.cmd run dev
+```
+
+Abre la dirección que muestra Vite, normalmente:
+
+```text
+http://localhost:5173
+```
+
+## Funcionalidades
+
+- Login con JWT.
+- Dashboard con datos reales.
+- CRUD de clientes.
+- CRUD de servicios.
+- CRUD de citas.
+- Rutas protegidas.
+- Roles Administrador y Empleado.
+- Diseño responsive.
+
+## Verificación
+
+```powershell
+npm.cmd run lint
+npm.cmd run build
+```
