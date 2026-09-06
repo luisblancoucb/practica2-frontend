@@ -7,6 +7,8 @@ import Navigation from './components/Navigation.jsx'
 import Footer from './components/Footer.jsx'
 import Clientes from './pages/Clientes.jsx'
 import FormularioCliente from './pages/FormularioCliente.jsx'
+import Servicios from './pages/Servicios.jsx'
+import FormularioServicio from './pages/FormularioServicio.jsx'
 
 import './App.css'
 
@@ -28,6 +30,7 @@ function App() {
         </ProtectedRoute>
       }
       />
+
       <Route
       path="/clientes"
       element={
@@ -39,6 +42,7 @@ function App() {
         </ProtectedRoute>
       }
       />
+
       <Route
       path="/clientes/nuevo"
       element={
@@ -50,6 +54,7 @@ function App() {
         </ProtectedRoute>
       }
       />
+
       <Route
       path="/clientes/:id/editar"
       element={
@@ -62,7 +67,42 @@ function App() {
       }
       />
 
+      <Route
+        path="/servicios"
+        element={
+          <ProtectedRoute>
+            <Header />
+            <Navigation />
+            <Servicios />
+            <Footer />
+          </ProtectedRoute>
+        }
+      />
 
+      <Route
+        path="/servicios/nuevo"
+        element={
+          <ProtectedRoute>
+            <Header />
+            <Navigation />
+            <FormularioServicio />
+            <Footer />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/servicios/:id/editar"
+        element={
+          <ProtectedRoute>
+            <Header />
+            <Navigation />
+            <FormularioServicio />
+            <Footer />
+          </ProtectedRoute>
+        }
+      />
+      
     </Routes>
   )
 }

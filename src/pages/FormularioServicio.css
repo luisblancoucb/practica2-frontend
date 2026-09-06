@@ -1,0 +1,46 @@
+.formulario-seccion h2 {
+  margin-top: 0;
+}
+
+.formulario-datos {
+  max-width: 600px;
+}
+
+.formulario-datos textarea {
+  width: 100%;
+  min-height: 100px;
+  padding: 10px;
+  border: 1px solid #aaaaaa;
+  border-radius: 4px;
+  font: inherit;
+  resize: vertical;
+}
+
+.formulario-datos textarea:focus {
+  border-color: #1d5d9b;
+  outline: 2px solid #b9d8f5;
+}
+
+.campo-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.boton-pequeno {
+  width: auto;
+  text-align: center;
+  text-decoration: none;
+}
+
+@media (max-width: 480px) {
+  .boton-pequeno {
+    width: 100%;
+  }
+
+  .encabezado-pagina {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}

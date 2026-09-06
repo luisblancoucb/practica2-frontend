@@ -78,3 +78,57 @@ export async function eliminarCliente(id) {
     throw new Error('No fue posible eliminar el cliente.')
   }
 }
+
+export async function crearServicio(servicio) {
+  const sesionGuardada = sessionStorage.getItem('sesion')
+  const sesion = sesionGuardada ? JSON.parse(sesionGuardada) : null
+
+  const respuesta = await fetch(`${API_URL}/servicios`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${sesion?.token ?? ''}`,
+    },
+    body: JSON.stringify(servicio),
+  })
+
+  if (!respuesta.ok) {
+    throw new Error('No fue posible guardar el servicio.')
+  }
+
+  return respuesta.json()
+}
+
+export async function actualizarServicio(id, servicio) {
+  const sesionGuardada = sessionStorage.getItem('sesion')
+  const sesion = sesionGuardada ? JSON.parse(sesionGuardada) : null
+
+  const respuesta = await fetch(`${API_URL}/servicios/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${sesion?.token ?? ''}`,
+    },
+    body: JSON.stringify(servicio),
+  })
+
+  if (!respuesta.ok) {
+    throw new Error('No fue posible actualizar el servicio.')
+  }
+}
+
+export async function eliminarServicio(id) {
+  const sesionGuardada = sessionStorage.getItem('sesion')
+  const sesion = sesionGuardada ? JSON.parse(sesionGuardada) : null
+
+  const respuesta = await fetch(`${API_URL}/servicios/${id}`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${sesion?.token ?? ''}`,
+    },
+  })
+
+  if (!respuesta.ok) {
+    throw new Error('No fue posible eliminar el servicio.')
+  }
+}
