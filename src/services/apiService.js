@@ -74,6 +74,12 @@ export async function eliminarCliente(id) {
     },
   })
 
+  if (respuesta.status === 409) {
+  throw new Error(
+      'No se puede eliminar el cliente porque tiene citas registradas.',
+    )
+  }
+  
   if (!respuesta.ok) {
     throw new Error('No fue posible eliminar el cliente.')
   }
@@ -128,6 +134,12 @@ export async function eliminarServicio(id) {
     },
   })
 
+  if (respuesta.status === 409) {
+    throw new Error(
+      'No se puede eliminar el servicio porque tiene citas registradas.',
+    )
+  }
+  
   if (!respuesta.ok) {
     throw new Error('No fue posible eliminar el servicio.')
   }

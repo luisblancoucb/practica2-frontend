@@ -52,7 +52,11 @@ function Clientes() {
             )}
         </header>
 
-        {mensajeError && <p role="alert">{mensajeError}</p>}
+        {mensajeError && (
+        <p className="mensaje-error" role="alert">
+          {mensajeError}
+        </p>
+        )}
 
         <div className="tabla-contenedor">
           <table>

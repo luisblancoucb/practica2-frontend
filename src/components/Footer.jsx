@@ -1,7 +1,7 @@
 function Footer() {
   return (
     <footer className="pie-pagina">
-      <p>Patitas · Práctica 2</p>
+      <p>Práctica Frontend Maestría en Ingeniería de Software</p>
     </footer>
   )
 }

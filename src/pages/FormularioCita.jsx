@@ -168,7 +168,11 @@ function FormularioCita() {
               </select>
             </div>
 
-            {mensajeError && <p role="alert">{mensajeError}</p>}
+            {mensajeError && (
+             <p className="mensaje-error" role="alert">
+               {mensajeError}
+             </p>
+            )}
 
             <button className="boton" type="submit">
               {esEdicion ? 'Actualizar cita' : 'Guardar cita'}

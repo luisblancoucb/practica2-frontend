@@ -40,7 +40,11 @@ function Dashboard() {
         <h2>Bienvenido al panel administrativo</h2>
       </section>
 
-      {mensajeError && <p role="alert">{mensajeError}</p>}
+      {mensajeError && (
+      <p className="mensaje-error" role="alert">
+        {mensajeError}
+      </p>
+      )}
 
       <section className="resumen">
         <h2>Resumen general</h2>
