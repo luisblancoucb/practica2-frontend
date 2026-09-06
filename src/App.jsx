@@ -50,6 +50,19 @@ function App() {
         </ProtectedRoute>
       }
       />
+      <Route
+      path="/clientes/:id/editar"
+      element={
+        <ProtectedRoute>
+          <Header />
+          <Navigation />
+          <FormularioCliente />
+          <Footer />
+        </ProtectedRoute>
+      }
+      />
+
+
     </Routes>
   )
 }

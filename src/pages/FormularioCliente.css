@@ -20,3 +20,8 @@
     flex-direction: column;
   }
 }
+
+.boton {
+  text-align: center;
+  text-decoration: none;
+}

@@ -1,6 +1,6 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { crearCliente } from '../services/apiService.js'
+import { useEffect, useState } from 'react'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import { actualizarCliente, crearCliente, obtenerDatos, } from '../services/apiService.js'
 import './FormularioCliente.css'
 
 const clienteInicial = {
@@ -16,6 +16,30 @@ function FormularioCliente() {
   const [mensajeError, setMensajeError] = useState('')
   const navegar = useNavigate()
 
+  const { id } = useParams()
+  const esEdicion = Boolean(id)
+
+  useEffect(() => {
+    async function cargarCliente() {
+      if (!esEdicion) {
+        return
+      }
+      try {
+        const clienteApi = await obtenerDatos(`/clientes/${id}`)
+        setCliente({
+          nombreCompleto: clienteApi.nombreCompleto,
+          telefono: clienteApi.telefono,
+          correo: clienteApi.correo,
+          nombreMascota: clienteApi.nombreMascota,
+          tipoMascota: clienteApi.tipoMascota,
+        })
+      } catch (error) {
+        setMensajeError(error.message)
+      }
+    }
+    cargarCliente()
+  }, [esEdicion, id])
+
   function handleChange(event) {
     const { name, value } = event.target
 
@@ -28,12 +52,15 @@ function FormularioCliente() {
   async function handleSubmit(event) {
     event.preventDefault()
     setMensajeError('')
-
     try {
-      await crearCliente(cliente)
-      navegar('/clientes')
+        if (esEdicion) {
+        await actualizarCliente(id, cliente)
+        } else {
+        await crearCliente(cliente)
+        }
+        navegar('/clientes')
     } catch (error) {
-      setMensajeError(error.message)
+        setMensajeError(error.message)
     }
   }
 
@@ -41,10 +68,18 @@ function FormularioCliente() {
     <main className="dashboard-principal">
       <section className="panel formulario-seccion">
         <header className="encabezado-pagina">
-          <div>
-            <h2>Formulario de cliente</h2>
-            <p>Registra un cliente y su mascota.</p>
-          </div>
+        <div>
+            <h2>{esEdicion ? 'Editar cliente' : 'Formulario de cliente'}</h2>
+            <p>
+            {esEdicion
+                ? 'Modifica los datos del cliente y su mascota.'
+                : 'Registra un cliente y su mascota.'}
+            </p>
+        </div>
+
+        <Link className="boton boton-pequeno" to="/clientes">
+            Volver a clientes
+        </Link>
         </header>
 
         <form className="formulario-datos" onSubmit={handleSubmit}>
@@ -117,7 +152,7 @@ function FormularioCliente() {
             {mensajeError && <p role="alert">{mensajeError}</p>}
 
             <button className="boton" type="submit">
-              Guardar cliente
+                {esEdicion ? 'Actualizar cliente' : 'Guardar cliente'}
             </button>
           </fieldset>
         </form>

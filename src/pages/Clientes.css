@@ -36,3 +36,37 @@ th {
   color: #1d3557;
   background-color: #dbe7f5;
 }
+
+.accion {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 4px;
+  color: #ffffff;
+  background-color: #1d5d9b;
+  text-decoration: none;
+}
+
+.accion:hover,
+.accion:focus-visible {
+  background-color: #164978;
+}
+
+.acciones {
+  white-space: nowrap;
+}
+
+.accion {
+  margin-right: 8px;
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+}
+
+.accion-eliminar {
+  background-color: #a32121;
+}
+
+.accion-eliminar:hover,
+.accion-eliminar:focus-visible {
+  background-color: #741717;
+}

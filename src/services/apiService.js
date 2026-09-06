@@ -43,3 +43,38 @@ export async function crearCliente(cliente) {
 
   return respuesta.json()
 }
+
+export async function actualizarCliente(id, cliente) {
+  const sesionGuardada = sessionStorage.getItem('sesion')
+  const sesion = sesionGuardada ? JSON.parse(sesionGuardada) : null
+
+  const respuesta = await fetch(`${API_URL}/clientes/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${sesion?.token ?? ''}`,
+    },
+    body: JSON.stringify(cliente),
+  })
+
+  if (!respuesta.ok) {
+    throw new Error('No fue posible actualizar el cliente.')
+  }
+}
+
+
+export async function eliminarCliente(id) {
+  const sesionGuardada = sessionStorage.getItem('sesion')
+  const sesion = sesionGuardada ? JSON.parse(sesionGuardada) : null
+
+  const respuesta = await fetch(`${API_URL}/clientes/${id}`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${sesion?.token ?? ''}`,
+    },
+  })
+
+  if (!respuesta.ok) {
+    throw new Error('No fue posible eliminar el cliente.')
+  }
+}

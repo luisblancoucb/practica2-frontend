@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
-import { obtenerDatos } from '../services/apiService.js'
+import { eliminarCliente, obtenerDatos } from '../services/apiService.js'
 import { Link } from 'react-router-dom'
 import './Clientes.css'
 
 function Clientes() {
   const [clientes, setClientes] = useState([])
   const [mensajeError, setMensajeError] = useState('')
-
+  
   useEffect(() => {
     async function cargarClientes() {
       try {
@@ -19,7 +19,24 @@ function Clientes() {
 
     cargarClientes()
   }, [])
-
+    
+  async function handleEliminar(cliente) {
+    const confirmar = window.confirm(
+      `¿Deseas eliminar a ${cliente.nombreCompleto}?`,
+    )
+  
+    if (!confirmar) {
+      return
+    }
+  
+    try {
+      await eliminarCliente(cliente.id)
+      setClientes(clientes.filter((item) => item.id !== cliente.id))
+    } catch (error) {
+      setMensajeError(error.message)
+    }
+  }
+    
   return (
     <main className="dashboard-principal">
       <section className="panel listado-seccion">
@@ -43,6 +60,7 @@ function Clientes() {
                 <th scope="col">Correo</th>
                 <th scope="col">Mascota</th>
                 <th scope="col">Tipo</th>
+                <th scope="col">Acciones</th>
               </tr>
             </thead>
             <tbody>
@@ -54,6 +72,18 @@ function Clientes() {
                   <td>{cliente.correo}</td>
                   <td>{cliente.nombreMascota}</td>
                   <td>{cliente.tipoMascota}</td>
+                  <td className="acciones">
+                    <Link className="accion" to={`/clientes/${cliente.id}/editar`}>
+                      Editar
+                    </Link>
+                    <button
+                      type="button"
+                      className="accion accion-eliminar"
+                      onClick={() => handleEliminar(cliente)}
+                    >
+                      Eliminar
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>
