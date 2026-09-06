@@ -1,0 +1,24 @@
+.formulario-seccion h2 {
+  margin-top: 0;
+}
+
+.formulario-datos {
+  max-width: 600px;
+}
+
+.boton-pequeno {
+  width: auto;
+  text-align: center;
+  text-decoration: none;
+}
+
+@media (max-width: 480px) {
+  .boton-pequeno {
+    width: 100%;
+  }
+
+  .encabezado-pagina {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
