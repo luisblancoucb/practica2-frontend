@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { eliminarServicio, obtenerDatos } from '../services/apiService.js'
+import { esAdministrador } from '../utils/sesion.js'
 import './Servicios.css'
 
 function Servicios() {
   const [servicios, setServicios] = useState([])
   const [mensajeError, setMensajeError] = useState('')
+  const administrador = esAdministrador()
 
   useEffect(() => {
     async function cargarServicios() {
@@ -42,9 +44,11 @@ function Servicios() {
       <section className="panel listado-seccion">
         <header className="encabezado-pagina">
           <h2>Servicios</h2>
-          <Link className="boton boton-pequeno" to="/servicios/nuevo">
-            Crear servicio
-          </Link>
+          {administrador && (
+            <Link className="boton boton-pequeno" to="/servicios/nuevo">
+              Crear servicio
+            </Link>
+          )}
         </header>
 
         {mensajeError && <p role="alert">{mensajeError}</p>}
@@ -59,7 +63,7 @@ function Servicios() {
                 <th scope="col">Precio</th>
                 <th scope="col">Duración</th>
                 <th scope="col">Activo</th>
-                <th scope="col">Acciones</th>
+                {administrador && <th scope="col">Acciones</th>}
               </tr>
             </thead>
             <tbody>
@@ -70,21 +74,23 @@ function Servicios() {
                   <td>{servicio.precio}</td>
                   <td>{servicio.duracionMinutos} min</td>
                   <td>{servicio.activo ? 'Sí' : 'No'}</td>
-                  <td className="acciones">
-                    <Link
-                      className="accion"
-                      to={`/servicios/${servicio.id}/editar`}
-                    >
-                      Editar
-                    </Link>
-                    <button
-                      type="button"
-                      className="accion accion-eliminar"
-                      onClick={() => handleEliminar(servicio)}
-                    >
-                      Eliminar
-                    </button>
-                  </td>
+                  {administrador && (
+                    <td className="acciones">
+                      <Link
+                        className="accion"
+                        to={`/servicios/${servicio.id}/editar`}
+                      >
+                        Editar
+                      </Link>
+                      <button
+                        type="button"
+                        className="accion accion-eliminar"
+                        onClick={() => handleEliminar(servicio)}
+                      >
+                        Eliminar
+                      </button>
+                    </td>
+                  )}
                 </tr>
               ))}
             </tbody>

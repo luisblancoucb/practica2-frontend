@@ -104,3 +104,8 @@ main {
   color: #ffffff;
   background-color: #1d5d9b;
 }
+
+.encabezado-pagina .boton-pequeno {
+  display: inline-block;
+  width: auto;
+}

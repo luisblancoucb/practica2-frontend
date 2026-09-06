@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { eliminarCita, obtenerDatos } from '../services/apiService.js'
+import { esAdministrador } from '../utils/sesion.js'
 import './Citas.css'
 
 function Citas() {
   const [citas, setCitas] = useState([])
   const [mensajeError, setMensajeError] = useState('')
+  const administrador = esAdministrador()
 
   useEffect(() => {
     async function cargarCitas() {
@@ -42,9 +44,11 @@ function Citas() {
       <section className="panel listado-seccion">
         <header className="encabezado-pagina">
           <h2>Citas</h2>
-          <Link className="boton boton-pequeno" to="/citas/nuevo">
-            Crear cita
-          </Link>
+          {administrador && (
+            <Link className="boton boton-pequeno" to="/citas/nuevo">
+              Crear cita
+            </Link>
+          )}
         </header>
 
         {mensajeError && <p role="alert">{mensajeError}</p>}
@@ -60,7 +64,7 @@ function Citas() {
                 <th scope="col">Mascota</th>
                 <th scope="col">Servicio</th>
                 <th scope="col">Estado</th>
-                <th scope="col">Acciones</th>
+                {administrador && <th scope="col">Acciones</th>}
               </tr>
             </thead>
             <tbody>
@@ -72,18 +76,20 @@ function Citas() {
                   <td>{cita.nombreMascota}</td>
                   <td>{cita.servicioNombre}</td>
                   <td>{cita.estado}</td>
-                  <td className="acciones">
-                    <Link className="accion" to={`/citas/${cita.id}/editar`}>
-                      Editar
-                    </Link>
-                    <button
-                      type="button"
-                      className="accion accion-eliminar"
-                      onClick={() => handleEliminar(cita)}
-                    >
-                      Eliminar
-                    </button>
-                  </td>
+                  {administrador && (
+                    <td className="acciones">
+                      <Link className="accion" to={`/citas/${cita.id}/editar`}>
+                        Editar
+                      </Link>
+                      <button
+                        type="button"
+                        className="accion accion-eliminar"
+                        onClick={() => handleEliminar(cita)}
+                      >
+                        Eliminar
+                      </button>
+                    </td>
+                  )}
                 </tr>
               ))}
             </tbody>

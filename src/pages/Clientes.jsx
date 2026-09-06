@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { eliminarCliente, obtenerDatos } from '../services/apiService.js'
 import { Link } from 'react-router-dom'
+import { esAdministrador } from '../utils/sesion.js'
 import './Clientes.css'
 
 function Clientes() {
@@ -36,15 +37,19 @@ function Clientes() {
       setMensajeError(error.message)
     }
   }
-    
+  
+  const administrador = esAdministrador()
+  
   return (
     <main className="dashboard-principal">
       <section className="panel listado-seccion">
         <header className="encabezado-pagina">
             <h2>Clientes</h2>
-            <Link className="boton boton-pequeno" to="/clientes/nuevo">
-            Crear cliente
-            </Link>
+            {administrador && (
+              <Link className="boton boton-pequeno" to="/clientes/nuevo">
+                Crear cliente
+              </Link>
+            )}
         </header>
 
         {mensajeError && <p role="alert">{mensajeError}</p>}
@@ -60,7 +65,7 @@ function Clientes() {
                 <th scope="col">Correo</th>
                 <th scope="col">Mascota</th>
                 <th scope="col">Tipo</th>
-                <th scope="col">Acciones</th>
+                {administrador && <th scope="col">Acciones</th>}
               </tr>
             </thead>
             <tbody>
@@ -72,18 +77,20 @@ function Clientes() {
                   <td>{cliente.correo}</td>
                   <td>{cliente.nombreMascota}</td>
                   <td>{cliente.tipoMascota}</td>
-                  <td className="acciones">
-                    <Link className="accion" to={`/clientes/${cliente.id}/editar`}>
-                      Editar
-                    </Link>
-                    <button
-                      type="button"
-                      className="accion accion-eliminar"
-                      onClick={() => handleEliminar(cliente)}
-                    >
-                      Eliminar
-                    </button>
-                  </td>
+                  {administrador && (
+                    <td className="acciones">
+                      <Link className="accion" to={`/clientes/${cliente.id}/editar`}>
+                        Editar
+                      </Link>
+                      <button
+                        type="button"
+                        className="accion accion-eliminar"
+                        onClick={() => handleEliminar(cliente)}
+                      >
+                        Eliminar
+                      </button>
+                    </td>
+                  )}
                 </tr>
               ))}
             </tbody>

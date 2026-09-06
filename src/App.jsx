@@ -1,72 +1,73 @@
 import { Route, Routes } from 'react-router-dom'
-import Login from './pages/Login.jsx'
-import Dashboard from './pages/Dashboard.jsx'
-import ProtectedRoute from './components/ProtectedRoute.jsx'
+import './App.css'
+import AdminRoute from './components/AdminRoute.jsx'
+import Footer from './components/Footer.jsx'
 import Header from './components/Header.jsx'
 import Navigation from './components/Navigation.jsx'
-import Footer from './components/Footer.jsx'
+import ProtectedRoute from './components/ProtectedRoute.jsx'
 import Clientes from './pages/Clientes.jsx'
-import FormularioCliente from './pages/FormularioCliente.jsx'
-import Servicios from './pages/Servicios.jsx'
-import FormularioServicio from './pages/FormularioServicio.jsx'
 import Citas from './pages/Citas.jsx'
+import Dashboard from './pages/Dashboard.jsx'
 import FormularioCita from './pages/FormularioCita.jsx'
-
-import './App.css'
+import FormularioCliente from './pages/FormularioCliente.jsx'
+import FormularioServicio from './pages/FormularioServicio.jsx'
+import Login from './pages/Login.jsx'
+import Servicios from './pages/Servicios.jsx'
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/login" element={<Login />} />
+
       <Route
-      path="/dashboard"
-      element={
-        <ProtectedRoute>
-        <>
-          <Header />
-          <Navigation />
-          <Dashboard />
-          <Footer />
-        </>
-        </ProtectedRoute>
-      }
+        path="/dashboard"
+        element={
+          <ProtectedRoute>
+            <Header />
+            <Navigation />
+            <Dashboard />
+            <Footer />
+          </ProtectedRoute>
+        }
       />
 
       <Route
-      path="/clientes"
-      element={
-        <ProtectedRoute>
-          <Header />
-          <Navigation />
-          <Clientes />
-          <Footer />
-        </ProtectedRoute>
-      }
+        path="/clientes"
+        element={
+          <ProtectedRoute>
+            <Header />
+            <Navigation />
+            <Clientes />
+            <Footer />
+          </ProtectedRoute>
+        }
       />
-
       <Route
-      path="/clientes/nuevo"
-      element={
-        <ProtectedRoute>
-          <Header />
-          <Navigation />
-          <FormularioCliente />
-          <Footer />
-        </ProtectedRoute>
-      }
+        path="/clientes/nuevo"
+        element={
+          <ProtectedRoute>
+            <AdminRoute>
+              <Header />
+              <Navigation />
+              <FormularioCliente />
+              <Footer />
+            </AdminRoute>
+          </ProtectedRoute>
+        }
       />
-
       <Route
-      path="/clientes/:id/editar"
-      element={
-        <ProtectedRoute>
-          <Header />
-          <Navigation />
-          <FormularioCliente />
-          <Footer />
-        </ProtectedRoute>
-      }
+        path="/clientes/:id/editar"
+        element={
+          <ProtectedRoute>
+            <AdminRoute>
+              <Header />
+              <Navigation />
+              <FormularioCliente />
+              <Footer />
+            </AdminRoute>
+          </ProtectedRoute>
+        }
       />
 
       <Route
@@ -80,27 +81,29 @@ function App() {
           </ProtectedRoute>
         }
       />
-
       <Route
         path="/servicios/nuevo"
         element={
           <ProtectedRoute>
-            <Header />
-            <Navigation />
-            <FormularioServicio />
-            <Footer />
+            <AdminRoute>
+              <Header />
+              <Navigation />
+              <FormularioServicio />
+              <Footer />
+            </AdminRoute>
           </ProtectedRoute>
         }
       />
-
       <Route
         path="/servicios/:id/editar"
         element={
           <ProtectedRoute>
-            <Header />
-            <Navigation />
-            <FormularioServicio />
-            <Footer />
+            <AdminRoute>
+              <Header />
+              <Navigation />
+              <FormularioServicio />
+              <Footer />
+            </AdminRoute>
           </ProtectedRoute>
         }
       />
@@ -116,31 +119,32 @@ function App() {
           </ProtectedRoute>
         }
       />
-
       <Route
         path="/citas/nuevo"
         element={
           <ProtectedRoute>
-            <Header />
-            <Navigation />
-            <FormularioCita />
-            <Footer />
+            <AdminRoute>
+              <Header />
+              <Navigation />
+              <FormularioCita />
+              <Footer />
+            </AdminRoute>
           </ProtectedRoute>
         }
       />
-      
       <Route
         path="/citas/:id/editar"
         element={
           <ProtectedRoute>
-            <Header />
-            <Navigation />
-            <FormularioCita />
-            <Footer />
+            <AdminRoute>
+              <Header />
+              <Navigation />
+              <FormularioCita />
+              <Footer />
+            </AdminRoute>
           </ProtectedRoute>
         }
       />
-
     </Routes>
   )
 }
