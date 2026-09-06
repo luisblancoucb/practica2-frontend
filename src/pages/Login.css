@@ -1,0 +1,129 @@
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  background-color: #ccd9ee;
+  color: #222222;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+footer {
+  padding: 15px;
+  color: #666666;
+  font-size: 14px;
+  text-align: center;
+}
+
+footer p {
+  margin: 0;
+}
+
+.login {
+  width: 100%;
+  max-width: 400px;
+  padding: 30px;
+  border: 2px solid #dddddd;
+  border-radius: 8px;
+  background-color: #ffffff;
+}
+
+.login-encabezado {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.login-encabezado h1 {
+  margin: 0 0 10px;
+  color: #1d3557;
+}
+
+.login-encabezado p {
+  margin: 0;
+  color: #666666;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+legend {
+  margin-bottom: 18px;
+  font-weight: bold;
+}
+
+.campo {
+  margin-bottom: 18px;
+}
+
+.campo label {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.campo input,
+.campo select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #aaaaaa;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.campo input:focus,
+.campo select:focus {
+  border-color: #1d5d9b;
+  outline: 2px solid #b9d8f5;
+}
+
+.boton {
+  display: block;
+  width: 100%;
+  padding: 11px;
+  border: 0;
+  border-radius: 4px;
+  color: #ffffff;
+  background-color: #1d5d9b;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.boton:hover {
+  background-color: #164978;
+}
+
+.mensaje-error,
+.mensaje-exito {
+  margin: 0 0 18px;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.mensaje-error {
+  color: #741717;
+  background-color: #fbe3e3;
+}
+
+.mensaje-exito {
+  color: #1d5d39;
+  background-color: #e3f3e8;
+}
+
+.boton:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
