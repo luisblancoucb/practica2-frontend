@@ -132,3 +132,54 @@ export async function eliminarServicio(id) {
     throw new Error('No fue posible eliminar el servicio.')
   }
 }
+
+export async function crearCita(cita) {
+  const sesion = JSON.parse(sessionStorage.getItem('sesion'))
+
+  const respuesta = await fetch(`${API_URL}/citas`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${sesion.token}`,
+    },
+    body: JSON.stringify(cita),
+  })
+
+  if (!respuesta.ok) {
+    throw new Error('No fue posible guardar la cita.')
+  }
+
+  return respuesta.json()
+}
+
+export async function actualizarCita(id, cita) {
+  const sesion = JSON.parse(sessionStorage.getItem('sesion'))
+
+  const respuesta = await fetch(`${API_URL}/citas/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${sesion.token}`,
+    },
+    body: JSON.stringify(cita),
+  })
+
+  if (!respuesta.ok) {
+    throw new Error('No fue posible actualizar la cita.')
+  }
+}
+
+export async function eliminarCita(id) {
+  const sesion = JSON.parse(sessionStorage.getItem('sesion'))
+
+  const respuesta = await fetch(`${API_URL}/citas/${id}`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${sesion.token}`,
+    },
+  })
+
+  if (!respuesta.ok) {
+    throw new Error('No fue posible eliminar la cita.')
+  }
+}

@@ -23,6 +23,9 @@ function Navigation() {
       <NavLink to="/servicios" className={claseEnlace}>
         Servicios
       </NavLink>
+      <NavLink to="/citas" className={claseEnlace}>
+        Citas
+      </NavLink>
       <button type="button" className="menu-salir" onClick={cerrarSesion}>
         Cerrar sesión
       </button>

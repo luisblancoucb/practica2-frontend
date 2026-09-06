@@ -9,6 +9,8 @@ import Clientes from './pages/Clientes.jsx'
 import FormularioCliente from './pages/FormularioCliente.jsx'
 import Servicios from './pages/Servicios.jsx'
 import FormularioServicio from './pages/FormularioServicio.jsx'
+import Citas from './pages/Citas.jsx'
+import FormularioCita from './pages/FormularioCita.jsx'
 
 import './App.css'
 
@@ -102,7 +104,43 @@ function App() {
           </ProtectedRoute>
         }
       />
+
+      <Route
+        path="/citas"
+        element={
+          <ProtectedRoute>
+            <Header />
+            <Navigation />
+            <Citas />
+            <Footer />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/citas/nuevo"
+        element={
+          <ProtectedRoute>
+            <Header />
+            <Navigation />
+            <FormularioCita />
+            <Footer />
+          </ProtectedRoute>
+        }
+      />
       
+      <Route
+        path="/citas/:id/editar"
+        element={
+          <ProtectedRoute>
+            <Header />
+            <Navigation />
+            <FormularioCita />
+            <Footer />
+          </ProtectedRoute>
+        }
+      />
+
     </Routes>
   )
 }
